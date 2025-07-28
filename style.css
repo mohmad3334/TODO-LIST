@@ -3,8 +3,141 @@
     padding: 0;
     box-sizing: border-box;
 }
-.task{
-    border: 2px solid #ccc;
-    border-radius: 5px;
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #000030;
+    color: white;
+}
+.input-btn {
+    width: 45%;
+    background-color: #00001d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    box-shadow: rgba(255, 255, 255, 0.13) 0px 10px 50px;
+}
+.input-btn input {
+    width: 70%;
+    padding: 8px 7px;
+    outline: none;
+    border-radius: 8px;
+    border: none;
+    background-color: #00002c;
+    color: white;
+}
+.input-btn button{
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: #00002c;
+    color: white;
+    cursor: pointer;
+}
+.tasks{
+    width: 70%;
+    background-color: #00001d;
+    padding: 20px;
+    border-radius: 12px;
+    max-height: 400px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    box-shadow: rgba(255, 255, 255, 0.13) 0px 10px 50px;
+}
+.tasks .task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
+    margin-bottom: 10px;
+    background-color: #00002c;
+    border-radius: 8px;
+    color: white;
+}
+.tasks .task p{
+    width: 75%;
+}
+.tasks .task .delete-update{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+}
+@media (max-width:1193px){
+    .tasks .task .delete-update {
+    width: 22%;
+}
+}
+@media (max-width:1067px) {
+    .tasks .task .delete-update {
+        width: 25%;
+    }
+}
+@media(max-width: 959px) {
+    .tasks .task .delete-update {
+        width: 30%;
+    }
+}
+@media (max-width:853px) {
+    .tasks .task .delete-update {
+        width: 35%;
+    }
+}
+@media (max-width: 792px) {
+    .tasks .task .delete-update {
+        width: 25%;
+    }
+    .btn{
+        font-size: 14px;
+        padding: 6px;
+    }
+    .input-btn {
+        width: 70%;
+    }
+}
+@media (max-width: 690px) {
+    .tasks {
+        width: 80%;
+    }
+    .input-btn {
+        width: 80%;
+    }
+}
+@media (max-width: 656px) {
+    .tasks {
+        width: 90%;
+    }
+    .input-btn {
+        width: 90%;
+    }
+    
+}
+@media (max-width:580px) {
+    .tasks .task .delete-update {
+        width: 29%;
+    }
+}
+@media (max-width:526px) {
+    .tasks .task{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+@media (max-width:506px) {
+    .tasks .task .delete-update {
+        width: 35%;
+    }
+}
+
+@media (max-width:438px) {
+    .tasks .task .delete-update {
+        width: 40%;
+    }
 }

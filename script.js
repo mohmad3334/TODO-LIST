@@ -1,42 +1,53 @@
 const btn = document.getElementById('btn');
-const taskList = document.querySelector('.list-group');
+const tasks = document.getElementById('tasks');
 
-btn.addEventListener('click', function () {
-    const inputEl = document.getElementById('input');
-    const input = inputEl.value.trim();
+btn.addEventListener('click', () => {
+    const inputEl = document.getElementById('input-el');
+    const input = inputEl.value;
 
     if (input === '') {
         alert('Please enter a task');
         return;
     }
 
-    const taskHTML = `
-        <div class="task m-3 d-flex justify-content-between align-items-center">
-            <p class="m-0 me-2">${input}</p>
-            <div class="buttons d-flex justify-content-between align-items-center flex-column h-100">
-                <button type="button" class="mb-3 btn btn-outline-danger delete-btn">Delete</button>
-                <button type="button" class="btn btn-outline-secondary update-btn">Update</button>
+    let content = `
+        <div class="task">
+            <p>${input}</p>
+            <div class="delete-update">
+                <button class="btn btn-danger delete-btn">Delete</button>
+                <button class="btn btn-primary update-btn">Update</button>
             </div>
         </div>
     `;
 
-    taskList.innerHTML += taskHTML;
+    tasks.innerHTML += content;
+    localStorage.setItem('tasks', tasks.innerHTML);
     inputEl.value = '';
 });
 
-taskList.addEventListener('click', function (e) {
+// تحميل المهام من localStorage عند فتح الصفحة
+window.addEventListener('load', () => {
+    let storedTasks = localStorage.getItem('tasks');
+    if (storedTasks) {
+        tasks.innerHTML = storedTasks;
+    }
+});
+
+// Event delegation للحذف والتحديث
+tasks.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete-btn')) {
-        const task = e.target.closest('.task');
-        task.remove();
+        const taskDiv = e.target.closest('.task');
+        taskDiv.remove();
+        localStorage.setItem('tasks', tasks.innerHTML); // حدّث التخزين
     }
 
-    // تحديث
     if (e.target.classList.contains('update-btn')) {
-        const task = e.target.closest('.task');
-        const paragraph = task.querySelector('p');
-        const newText = prompt('Update your task:', paragraph.textContent);
-        if (newText !== null && newText.trim() !== '') {
-            paragraph.textContent = newText;
+        const taskDiv = e.target.closest('.task');
+        const taskText = taskDiv.querySelector('p');
+        const newText = prompt('Update task:', taskText.textContent);
+        if (newText) {
+            taskText.textContent = newText;
+            localStorage.setItem('tasks', tasks.innerHTML); // حدّث التخزين
         }
     }
 });
